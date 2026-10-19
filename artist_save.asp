@@ -24,7 +24,7 @@ If name_ = "" Then
 End If
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 If id > 0 Then
     db.Execute "UPDATE TBL_ARTIST SET ARTIST_NAME = ?, ARTIST_LASTNAME = ?, ARTIST_IMAGE = ? WHERE ID_ARTIST = ?", _

@@ -6,9 +6,9 @@
 ' prevenir inyección de SQL.
 '
 ' Uso:
-'   Dim db : Set db = DB()
+'   Dim db : Set db = OpenPoliDB()
 '   Dim id : id = db.Scalar("SELECT ID_USER FROM TBL_USER WHERE USERNAME = ?", Array(Array("u", Request.Form("username"))))
-'   Dim rs : Set rs = db.Recordset("SELECT * FROM TBL_SONG ORDER BY ID_SONG")
+'   Dim rs : Set rs = db.Recordset("SELECT * FROM TBL_SONG ORDER BY ID_SONG", Nothing)
 '   Dim n  : n = db.Execute("DELETE FROM TBL_SONG WHERE ID_SONG = ?", Array(Array("id", CLng(Request("id")))))
 '
 ' Los parámetros se pasan como: Array(Array("nombre1", valor1), ...)
@@ -104,7 +104,7 @@ Class PoliDB
     End Function
 End Class
 
-Function DB()
-    Set DB = New PoliDB
+Function OpenPoliDB()
+    Set OpenPoliDB = New PoliDB
 End Function
 %>

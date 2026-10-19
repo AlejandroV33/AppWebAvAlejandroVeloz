@@ -12,11 +12,11 @@
 RequireLogin
 
 Dim db, rs, actions
-Set db = DB()
+Set db = OpenPoliDB()
 Set rs = db.Recordset( _
     "SELECT al.ID_ALBUM, al.TITLE_ALBUM, al.RELEASE_YEAR, al.ALBUM_IMAGE_PATH, " & _
     "       (SELECT COUNT(*) FROM TBL_TRACKLIST t WHERE t.ID_ALBUM = al.ID_ALBUM) AS SONG_COUNT " & _
-    "FROM TBL_ALBUM al ORDER BY al.TITLE_ALBUM")
+    "FROM TBL_ALBUM al ORDER BY al.TITLE_ALBUM", Nothing)
 
 actions = ""
 If IsAdmin() Then

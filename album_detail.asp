@@ -17,7 +17,7 @@ albumId = Request.QueryString("id")
 If IsNumeric(albumId) Then albumId = CLng(albumId) Else albumId = 0
 
 Dim db, rs
-Set db = DB()
+Set db = OpenPoliDB()
 
 Dim alTitle
 alTitle = db.Scalar("SELECT TITLE_ALBUM FROM TBL_ALBUM WHERE ID_ALBUM = ?", Array(Array("id", albumId)))

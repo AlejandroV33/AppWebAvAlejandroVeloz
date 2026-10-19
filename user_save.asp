@@ -28,7 +28,7 @@ If username_ = "" Or email_ = "" Then
 End If
 
 Dim db, dup
-Set db = DB()
+Set db = OpenPoliDB()
 
 ' Usuario y correo únicos (excluyendo el propio registro al editar)
 dup = db.Scalar("SELECT COUNT(*) FROM TBL_USER WHERE (USERNAME = ? OR EMAIL = ?) AND ID_USER <> ?", _

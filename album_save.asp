@@ -28,7 +28,7 @@ yr = Null
 If IsNumeric(year_) Then yr = CLng(year_)
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 If id > 0 Then
     db.Execute "UPDATE TBL_ALBUM SET TITLE_ALBUM = ?, RELEASE_YEAR = ?, ALBUM_IMAGE_PATH = ? WHERE ID_ALBUM = ?", _

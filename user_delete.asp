@@ -24,7 +24,7 @@ If id = CurrentUserId() Then
 End If
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 db.Execute "DELETE FROM TBL_USER WHERE ID_USER = ?", Array(Array("id", id))
 Set db = Nothing
 

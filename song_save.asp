@@ -35,7 +35,7 @@ End If
 Set fso = Nothing
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 Dim newId
 newId = id

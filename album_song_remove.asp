@@ -22,7 +22,7 @@ songId  = CLng(songId)
 albumId = CLng(albumId)
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 db.Execute "DELETE FROM TBL_TRACKLIST WHERE ID_ALBUM = ? AND ID_SONG = ?", Array(Array("a", albumId), Array("s", songId))
 Set db = Nothing
 

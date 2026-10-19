@@ -25,7 +25,7 @@ Dim fTitle, fYear, fImg
 fTitle = "" : fYear = "" : fImg = ""
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 If isEdit Then
     Dim rs

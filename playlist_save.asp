@@ -27,7 +27,7 @@ If title_ = "" Then
 End If
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 If id > 0 Then
     db.Execute "UPDATE TBL_PLAYLIST SET TITLE = ?, TYPE = ?, PHOTO = ?, ID_USER = ? WHERE ID_PLAYLIST = ?", _

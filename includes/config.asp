@@ -18,10 +18,10 @@ Option Explicit
 '   (localdb)\MSSQLLocalDB  -> LocalDB de Visual Studio
 '   localhost               -> instancia por defecto
 ' ---------------------------------------------------------------------
-Const DB_CONNSTR = "Provider=SQLOLEDB.1;Data Source=.\SQLEXPRESS;Initial Catalog=BDD_PoliMusic;User ID=usr_polimusic;Password=Politecnica1;"
+Const DB_CONNSTR = "Provider=SQLOLEDB.1;Data Source=192.168.100.84,14333;Initial Catalog=BDD_PoliMusic;User ID=usr_polimusic;Password=Politecnica1;"
 
 ' Alternativa con autenticación de Windows (descomentar y comentar la de arriba):
-'Const DB_CONNSTR = "Provider=SQLOLEDB.1;Data Source=.\SQLEXPRESS;Initial Catalog=BDD_PoliMusic;Integrated Security=SSPI;"
+'Const DB_CONNSTR = "Provider=SQLOLEDB.1;Data Source=192.168.100.84,14333;Initial Catalog=BDD_PoliMusic;Integrated Security=SSPI;"
 
 ' ---------------------------------------------------------------------
 ' Constantes ADODB (no vienen definidas por defecto en ASP clásico)
@@ -166,8 +166,8 @@ End Function
 ' Ajusta un valor a entero de 32 bits con signo (aritmética de SHA-1)
 Function Wrap32(v)
     v = CDbl(v)
-    v = v - Int(v / 4294967296#) * 4294967296#
-    If v >= 2147483648# Then v = v - 4294967296#
+    v = v - Int(v / 4294967296.0) * 4294967296.0
+    If v >= 2147483648.0 Then v = v - 4294967296.0
     Wrap32 = CLng(v)
 End Function
 
@@ -192,7 +192,7 @@ Function Sha1Hex(message)
     Dim h0, h1, h2, h3, h4, a, bb, c, d, e, f, k, temp
     Dim w(79)
 
-    h0 = 1732584193# : h1 = 4023233417# : h2 = 2562383102# : h3 = 271733878# : h4 = 3285377520#
+    h0 = 1732584193.0 : h1 = 4023233417.0 : h2 = 2562383102.0 : h3 = 271733878.0 : h4 = 3285377520.0
 
     n = Len(message)
     ReDim b(n + 71)
@@ -209,8 +209,8 @@ Function Sha1Hex(message)
     Loop
 
     ' longitud del mensaje en bits (64 bits big-endian)
-    hi = Int(ml / 4294967296#)
-    lo = ml - hi * 4294967296#
+    hi = Int(ml / 4294967296.0)
+    lo = ml - hi * 4294967296.0
     b(i)   = CLng(Int(hi / 16777216)) And &HFF
     b(i+1) = CLng(Int(hi / 65536)) And &HFF
     b(i+2) = CLng(Int(hi / 256)) And &HFF
@@ -236,16 +236,16 @@ Function Sha1Hex(message)
         For t = 0 To 79
             If t < 20 Then
                 f = (bb And c) Or ((Not bb) And d)
-                k = 1518500249#
+                k = 1518500249.0
             ElseIf t < 40 Then
                 f = bb Xor c Xor d
-                k = 1859775393#
+                k = 1859775393.0
             ElseIf t < 60 Then
                 f = (bb And c) Or (bb And d) Or (c And d)
-                k = 2400959708#
+                k = 2400959708.0
             Else
                 f = bb Xor c Xor d
-                k = 3395464782#
+                k = 3395464782.0
             End If
             temp = Wrap32(CDbl(f) + CDbl(Rotl32(a, 5)) + CDbl(e) + k + CDbl(w(t)))
             e = d : d = c : c = Rotl32(bb, 30) : bb = a : a = temp

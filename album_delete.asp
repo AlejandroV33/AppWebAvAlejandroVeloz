@@ -19,7 +19,7 @@ End If
 id = CLng(id)
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 db.Execute "DELETE FROM TBL_TRACKLIST WHERE ID_ALBUM = ?", Array(Array("id", id))
 db.Execute "DELETE FROM TBL_ALBUM WHERE ID_ALBUM = ?", Array(Array("id", id))
 Set db = Nothing

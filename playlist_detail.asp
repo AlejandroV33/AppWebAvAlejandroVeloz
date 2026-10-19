@@ -17,7 +17,7 @@ playlistId = Request.QueryString("id")
 If IsNumeric(playlistId) Then playlistId = CLng(playlistId) Else playlistId = 0
 
 Dim db, rs
-Set db = DB()
+Set db = OpenPoliDB()
 
 Dim pTitle
 pTitle = db.Scalar("SELECT TITLE FROM TBL_PLAYLIST WHERE ID_PLAYLIST = ?", Array(Array("id", playlistId)))

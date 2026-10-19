@@ -21,7 +21,7 @@ End If
 id = CLng(id)
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 db.Execute "UPDATE TBL_SONG SET PLAYS = ISNULL(PLAYS, 0) + 1 WHERE ID_SONG = ?", Array(Array("id", id))
 Set db = Nothing
 

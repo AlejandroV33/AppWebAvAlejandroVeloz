@@ -12,8 +12,8 @@
 RequireAdmin
 
 Dim db, rs, actions
-Set db = DB()
-Set rs = db.Recordset("SELECT ID_USER, USERNAME, EMAIL, BIRTHDAY, USER_PHOTO, USER_TYPE FROM TBL_USER ORDER BY ID_USER")
+Set db = OpenPoliDB()
+Set rs = db.Recordset("SELECT ID_USER, USERNAME, EMAIL, BIRTHDAY, USER_PHOTO, USER_TYPE FROM TBL_USER ORDER BY ID_USER", Nothing)
 
 actions = "<a class=""btn btn-primary"" href=""user_form.asp"">" & Icon("plus", 16) & "<span>Nuevo usuario</span></a>"
 %>

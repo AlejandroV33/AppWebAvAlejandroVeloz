@@ -24,7 +24,7 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         errorMsg = "Debes ingresar tu usuario/correo y tu contraseña."
     Else
         Dim db, rs
-        Set db = DB()
+        Set db = OpenPoliDB()
         Set rs = db.Recordset( _
             "SELECT ID_USER, USERNAME, PASSWORD, EMAIL, USER_TYPE, USER_PHOTO " & _
             "FROM TBL_USER WHERE USERNAME = ? OR EMAIL = ?", _

@@ -25,7 +25,7 @@ Dim fTitle, fType, fPhoto, fOwner
 fTitle = "" : fType = 0 : fPhoto = "" : fOwner = CurrentUserId()
 
 Dim db, rs
-Set db = DB()
+Set db = OpenPoliDB()
 
 If isEdit Then
     Set rs = db.Recordset("SELECT ID_USER, TITLE, TYPE, PHOTO FROM TBL_PLAYLIST WHERE ID_PLAYLIST = ?", Array(Array("id", editId)))
@@ -41,7 +41,7 @@ If isEdit Then
     Set rs = Nothing
 End If
 
-Set rs = db.Recordset("SELECT ID_USER, USERNAME FROM TBL_USER ORDER BY USERNAME")
+Set rs = db.Recordset("SELECT ID_USER, USERNAME FROM TBL_USER ORDER BY USERNAME", Nothing)
 %>
 <%= RenderHead(IIf(isEdit, "Editar lista", "Nueva lista")) %>
 <%= RenderShellOpen("playlists", IIf(isEdit, "Editar lista", "Nueva lista"), "Gestión de listas de reproducción", "") %>

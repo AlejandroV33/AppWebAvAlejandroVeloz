@@ -22,7 +22,7 @@ playlistId = CLng(playlistId)
 songId     = CLng(songId)
 
 Dim db, dup
-Set db = DB()
+Set db = OpenPoliDB()
 
 dup = db.Scalar("SELECT COUNT(*) FROM TBL_PLAYLIST_SONG WHERE ID_PLAYLIST = ? AND ID_SONG = ?", Array(Array("p", playlistId), Array("s", songId)))
 If CLng(dup & "0") = 0 Then

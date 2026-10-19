@@ -11,7 +11,7 @@
 <%
 RequireAdmin
 
-Dim editId, isEdit
+Dim editId, isEdit, pageTitle, submitLabel, artistChecked
 editId = Request.QueryString("id")
 isEdit = False
 If IsNumeric(editId) And CLng(editId) > 0 Then
@@ -20,12 +20,19 @@ If IsNumeric(editId) And CLng(editId) > 0 Then
 Else
     editId = 0
 End If
+If isEdit Then
+    pageTitle = "Editar canción"
+    submitLabel = "Guardar cambios"
+Else
+    pageTitle = "Nueva canción"
+    submitLabel = "Crear canción"
+End If
 
 Dim fName, fPath
 fName = "" : fPath = ""
 
 Dim db, rs
-Set db = DB()
+Set db = OpenPoliDB()
 
 ' Artistas actuales de la canción (para preseleccionar)
 Dim currentArtists
@@ -51,10 +58,10 @@ If isEdit Then
     currentArtists = currentArtists & ","
 End If
 
-Set rs = db.Recordset("SELECT ID_ARTIST, ARTIST_NAME, ARTIST_LASTNAME FROM TBL_ARTIST ORDER BY ARTIST_NAME")
+Set rs = db.Recordset("SELECT ID_ARTIST, ARTIST_NAME, ARTIST_LASTNAME FROM TBL_ARTIST ORDER BY ARTIST_NAME", Nothing)
 %>
-<%= RenderHead(IIf(isEdit, "Editar canción", "Nueva canción")) %>
-<%= RenderShellOpen("home", IIf(isEdit, "Editar canción", "Nueva canción"), "Gestión de canciones", "") %>
+<%= RenderHead(pageTitle) %>
+<%= RenderShellOpen("home", pageTitle, "Gestión de canciones", "") %>
 
 <%= RenderFlash() %>
 
@@ -75,9 +82,10 @@ Set rs = db.Recordset("SELECT ID_ARTIST, ARTIST_NAME, ARTIST_LASTNAME FROM TBL_A
                 <label>Artistas (TBL_PLAYER)</label>
                 <div style="display:flex;flex-wrap:wrap;gap:8px;background:var(--bg-0);border:1px solid var(--border);border-radius:9px;padding:12px">
                 <% Do While Not rs.EOF %>
+                    <% If InStr(currentArtists, "," & CStr(rs.Fields("ID_ARTIST").Value) & ",") > 0 Then artistChecked = "checked" Else artistChecked = "" %>
                     <label style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--text-dim);cursor:pointer">
                         <input type="checkbox" name="artists" value="<%= rs.Fields("ID_ARTIST").Value %>"
-                            <%= IIf(InStr(currentArtists, "," & CStr(rs.Fields("ID_ARTIST").Value) & ",") > 0, "checked", "") %>>
+                            <%= artistChecked %>>
                         <%= Html(rs.Fields("ARTIST_NAME").Value & "") %><% If Not IsNull(rs.Fields("ARTIST_LASTNAME").Value) And rs.Fields("ARTIST_LASTNAME").Value <> "" Then %> <%= Html(rs.Fields("ARTIST_LASTNAME").Value) %><% End If %>
                     </label>
                 <% rs.MoveNext : Loop %>
@@ -85,7 +93,7 @@ Set rs = db.Recordset("SELECT ID_ARTIST, ARTIST_NAME, ARTIST_LASTNAME FROM TBL_A
             </div>
         </div>
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary"><%= Icon("plus", 16) %> <%= IIf(isEdit, "Guardar cambios", "Crear canción") %></button>
+            <button type="submit" class="btn btn-primary"><%= Icon("plus", 16) %> <%= submitLabel %></button>
             <a class="btn btn-ghost" href="index.asp">Cancelar</a>
         </div>
     </form>

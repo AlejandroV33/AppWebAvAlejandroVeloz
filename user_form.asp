@@ -26,7 +26,7 @@ Dim fName, fEmail, fBirth, fPhoto, fType
 fName = "" : fEmail = "" : fBirth = "" : fPhoto = "" : fType = 0
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 If isEdit Then
     Dim rs

@@ -25,7 +25,7 @@ Dim fName, fLast, fImg
 fName = "" : fLast = "" : fImg = ""
 
 Dim db
-Set db = DB()
+Set db = OpenPoliDB()
 
 If isEdit Then
     Dim rs
