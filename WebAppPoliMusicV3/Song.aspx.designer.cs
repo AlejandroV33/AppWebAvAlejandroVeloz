@@ -13,5 +13,64 @@ namespace WebAppPoliMusicV3
 
     public partial class Song
     {
+        /// <summary>
+        /// Control litWelcome.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litWelcome;
+
+        /// <summary>
+        /// Control litUserCard.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litUserCard;
+
+        /// <summary>
+        /// Control litSongRows.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litSongRows;
+
+        /// <summary>
+        /// Control litMessage.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litMessage;
+
+        /// <summary>
+        /// Control litTotalSongs.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litTotalSongs;
+
+        /// <summary>
+        /// Control litTotalPlays.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litTotalPlays;
+
+        /// <summary>
+        /// Control litTotalArtists.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litTotalArtists;
+
+        /// <summary>
+        /// Control litTotalAlbums.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litTotalAlbums;
+
+        /// <summary>
+        /// Control litSessionPlays.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litSessionPlays;
+
+        /// <summary>
+        /// Control hdnPlaySongId.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPlaySongId;
+
+        /// <summary>
+        /// Control btnRegisterPlay.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnRegisterPlay;
+
+        /// <summary>
+        /// Control upPlays.
+        /// </summary>
+        protected global::System.Web.UI.UpdatePanel upPlays;
     }
 }
